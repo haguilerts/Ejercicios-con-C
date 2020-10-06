@@ -1,0 +1,11 @@
+git init
+-git status -s
+-git log --oneline
+-git add .
+-git commit -m "intoducuindo comandos de git " 
+git remote add origin https://github.com/haguilerts/Ejercicios-con-C.git
+-git push origin master
+
+
+
+
