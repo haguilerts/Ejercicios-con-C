@@ -55,10 +55,16 @@ _/*	la dependeia de ser mayo o no se basa de la tabla ASSI.
     ==0    si    cadena1 == cadena2		return:  0
     > 0    si    cadena1 > cadena2		return:  1
     la comparacion se da caracter a caracter: 
-*/__________________________________________________________________________________________
+*/
+//__________________________________________________________________________________________
+//--------------------------------------- archivos y abstraccion -------------------------------------------------------------------------
+// ifndef:  sirve para no definir mas de una una biblioteca.   .h= que | .o= es el como empaquetado | .c= como
+//		  gcc -c arim.c -o arim.o
+// complilacion: gcc  -c -g  arim.c -o arim.o
+//				 gcc -g unprg.c armi.o -o unprg.o
+//
+// typedef: 
 
 
 
 
-
-*/ 
