@@ -40,7 +40,7 @@ Formateador                Salida
 	%c 					caracter (char)
 	%s 					cadena de caracteres (string)
 	%c 					matrices
-	%p 					puntero 		 printf("memVector[]: %p\n",&vector[2]);
+	%p o %h				puntero 		 printf("memVector[]: %p\n",&vector[2]);
 
 	\a : alerta
 	\b : espacio atras
@@ -64,6 +64,26 @@ _/*	la dependeia de ser mayo o no se basa de la tabla ASSI.
 //				 gcc -g unprg.c armi.o -o unprg.o
 //
 // typedef: 
+
+/*-------------------------------------- pasaje por referencia --------------------------------------------------
+operacions unitarios 
+& ---> direccion
+* ---> contenido
+
+
+int a,b,c;
+&a : toma el espacio de memoria de 'a'
+int * ptr_a; 	// almacena espacio de memoria 
+&*prt_a: tomas ese espacio de memoria 
+	scanf("%i",&a); // asigno un valor atraves del espacio de memoria 
+	print("mi contenido de la variable 'a' es : %i \n",a);
+	print("mi espacioMemoria de la variable 'a' es : %p \n",&a);
+
+ptr_a=&a; // le asigno el espacio de memoria de 'a' 
+	print("mi espacio de memoria de la variable 'ptr_a' es : %i \n",*ptr_a);
+
+
+ */
 
 
 

@@ -1,12 +1,20 @@
 #include <stdio.h>
 
+void puntero(int* ptr_a,int *a){
+ 	scanf("%i",&*a); // asigno un valor atraves del espacio de memoria 
+		printf("mi contenido de la variable 'a' es : %i \n",*a);
+	*ptr_a=*a; // le asigno el espacio de memoria de 'a' 
+		printf("mi espacio de memoria de la variable 'ptr_a' es : %p \n",&*ptr_a);
+		printf("mi espacio de memoria de la variable 'a' es : %p \n",&*a);
+
+}
 
 
 int main(){
     printf("binvenidos a ..");
     printf("Algo1 Mendes\n");
 
-    
+ /*    
     int a= 13;
 	printf("salto en linea ...\n");
 	printf("salto en nueva linea doble...\n\n"); // salto en linea \n
@@ -57,8 +65,9 @@ int main(){
 			assert( tamanio(string_definido) == 22);
 
 			puts("\n-----impresion de texto\n");
-    //-------------------------------------------------------------------------------------
-	printf("\n ---- strlen(longitud), strcpy(asigna valor), strcat(union), sprintf(union sensilla), strcmp(compara) ----\n ");
+  
+  */   //-------------------------------------------------------------------------------------
+/*	printf("\n ---- strlen(longitud), strcpy(asigna valor), strcat(union), sprintf(union sensilla), strcmp(compara) ----\n ");
 		
 			char texto[]="strlen";
 			int longitud;
@@ -92,12 +101,12 @@ int main(){
 			char nombre3[]="aaa";
 			char nombre4[]="aaA";
 			int resultado=strcmp(nombre1,nombre2);
-			/*	la dependeia de ser mayo o no se basa de la tabla ASSI.
-				< 0    si    cadena1 < cadena2 		return: -1
-				==0    si    cadena1 == cadena2		return:  0
-				> 0    si    cadena1 > cadena2		return:  1
-				la comparacion se da caracter a caracter: 
-			*/
+			//	la dependeia de ser mayo o no se basa de la tabla ASSI.
+			//	< 0    si    cadena1 < cadena2 		return: -1
+			//	==0    si    cadena1 == cadena2		return:  0
+			//	> 0    si    cadena1 > cadena2		return:  1
+			//	la comparacion se da caracter a caracter: 
+			
 			printf( "Comparación con strcmp: %i\n", resultado); // -1
 			printf( "Comparación con strcmp: %i\n", strcmp( nombre2,nombre22 ));// 0
 			printf( "Comparación con strcmp: %i\n", strcmp( nombre3,nombre4 ));// 1
@@ -113,8 +122,19 @@ printf("\n ------------------- scanert -----------------------\n ");
     scanf("%i", &altura); // asigna valor x consola 
     printf("Berni esta a la altura: \n");
 
+ */
+printf("\n ------------------- puntero -----------------------\n ");
+
+int a;
+int * ptr_a; 	// almacena espacio de memoria 
+	puntero(&*ptr_a,&a);
+printf("mi espacioMemoria de la variable 'ptr_a' es : %p \n",&ptr_a);
+printf("mi espacioMemoria de la variable 'a' es : %p \n",&a);
+
 
 printf("-================ fin ================---\n ");
 
     return 0;
 }
+//gcc ejercicio1.c -o e -std=c99 -Wall -Wconversion -Werror 
+ 
