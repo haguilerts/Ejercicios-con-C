@@ -6,6 +6,35 @@ const char Dulce  = 'D';
 const char Salado= 'S';
 const char Amargo= 'A';
 
+const int altura_coraje     = 30;
+const int altura_pollito    = 50;
+const int altura_bellota    = 120;
+const int altura_blue       = 140;
+const int altura_jhonnyBravo= 180;
+const int altura_puroHueso  = 200;
+
+const int valor_color_Azul     = 20;
+const int valor_color_Verde    = 20;
+const int valor_color_Negro    = 15;
+const int valor_color_Blanco   = 15;
+const int valor_color_Rosa     = 5;
+const int valor_color_Amarillo = 5;
+
+const int valor_sabor_Salado   = 5;
+const int valor_sabor_Dulce    = 15;
+const int valor_sabor_Amargo   = 20;
+
+const int MIN_rango_Zapato   = 33;
+const int MAX_rango_Zapato   = 47;
+const int NULL_rango_Zapato   = 0;
+
+const int MIN_rango_Fecha   = 1988;
+const int MAX_rango_Fecha   = 2008;
+
+const int MIN_rango_Altura   = 10;
+const int MAX_rango_Altura   = 250;
+
+
 #define AZUL      'A'
 #define AMARRILLO 'Y'
 #define VERDE     'V'
@@ -19,8 +48,6 @@ const char Amargo= 'A';
 #define BLUE        'R'
 #define JHONNY_BRAVO 'J'
 #define PURO_HUESOS 'H'
-
-#define FECHA_NACIENTO 'F'
 
 /*
    *PRE:
@@ -111,29 +138,42 @@ int altura_personaje(char p){
   }
   
   //-----------------------------------------------------------------------------------------------------
-  int operacion_de_puntaje(int *f){
-     int res=((*f) % 20)+1;
-     return res;
-  }
+    /*
+    *PRE: se introducera un valor entero entre 1988 y 2008 incluyentes
+    *POST: retorna una operacion entrera.
+    */
+    int operacion_de_puntaje(int *f){
+      int res=((*f) % 20)+1;
+      return res;
+    }
   /*
-   *PRE: se debe introducir un valor entero entre [1988 -2008], excluyente
-   *POST: retornara una operacion 
+   *PRE: se ingresa un nuemro entero que cumpla ciertas condiciones
+   *POST: retornara una un entero 1 y 9
    */
   int introducir_fNacimiento(int *f){    
       do{
         printf("ingrese la fecha de nacimiento entre [1988 -2008], excluyente\n");
         scanf("%i",f);
-      }while(*f<1988 || *f>2008 ); // 
-       return operacion_de_puntaje(f);
-        //printf("resOperacion:%i \n",res);
-        //printf("MisRes:%i \n",1988 % 20);
-      
+      }while(*f<MIN_rango_Fecha || *f>MAX_rango_Fecha ); // 
+      return operacion_de_puntaje(f);      
   } 
-   /*
-   *PRE:
-   *POST:
-   */
-  int puntaje_sabor(char *s){
+    /*
+    *PRE: segun el caracter, asigno puntaje para cada caracter.
+    *POST: retorna un puntaje entero 
+    */
+    int asignar_puntaje(char *s){
+      int puntaje=20;    
+      if (*s == Dulce)
+        puntaje=15;
+      else if(*s == Salado)
+        puntaje=5;
+      return puntaje;
+    }
+  /*
+  *PRE: se introduce un caracter en mayuscula 
+  *POST:
+  */
+  int introducir_sabor(char *s){
     do{
        // printf("123\n");
       printf("ingrese un Sabor: Dulce(D),Salado(S) o Amargo(A)\n");
@@ -141,32 +181,34 @@ int altura_personaje(char p){
       scanf("%c",s);
        // printf("789\n");
     } while(!( *s==Dulce || *s==Salado || *s==Amargo) );
-    int puntaje=20;    
-    if (*s == Dulce)
-      puntaje=15;
-    else if(*s == Salado)
-      puntaje=5;
-    return puntaje;
+    return asignar_puntaje(s);    
   }
-  
+    /*
+    *PRE: 
+    *POST:
+    */
+    int asignar_puntaje1(int *tz){
+      int cont=0;
+        if (*tz >=33 && *tz <=37)
+          cont=2;
+        if (*tz >=38 && *tz <=42)
+          cont=3;            
+        else if (*tz >=43 && *tz <=47)
+          cont=4;        
+      //printf("c: %i\n",cont);
+      return cont;   
+    }
    /*
    *PRE:
    *POST:
    */
-  int puntaje_Zapato(int *tz){
+  int introducir_talaZapato(int *tz){
     do{
       printf("ingrese el Talle de Zapato entre [33 - 47], excluyente o '0'\n");
       scanf("%i",tz);
-    }while((*tz<33 || *tz>47) && *tz!=0);
-    int cont=0;
-      if (*tz >=33 && *tz <=37)
-        cont=2;
-      if (*tz >=38 && *tz <=42)
-        cont=3;            
-      else if (*tz >=43 && *tz <=47)
-        cont=4;        
-    printf("c: %i\n",cont);
-    return cont;   
+    }while((*tz<MIN_rango_Zapato || *tz>MAX_rango_Zapato) && *tz!=NULL_rango_Zapato);
+     return asignar_puntaje1(tz);
+    
   }
   
    /*
@@ -201,7 +243,7 @@ int altura_personaje(char p){
       traerNombre(p2);   
   } 
    /*
-   *PRE:
+   *PRE: 
    *POST:
    */
   void personajes_posibles(int punTotal, int* alturaUsuario){
@@ -231,8 +273,8 @@ int altura_personaje(char p){
    */
   void  ingresarDatos(int* fecha,int* talleZapato,int* altura,char* sabor,char* color ){
     int fechaN    =introducir_fNacimiento(fecha);
-    int preSabor  =puntaje_sabor(sabor);
-    int zapato    =puntaje_Zapato(talleZapato);
+    int preSabor  =introducir_sabor(sabor);
+    int zapato    =introducir_talaZapato(talleZapato);
     int col       =puntaje_color(color);
     puntaje_altura(altura);      
     int punTotal  =(preSabor + col + fechaN) * zapato;
