@@ -1,3 +1,4 @@
+//Materia: Algoritmo 1 - trabajo practico n°1 - alum: Giovanny Aguilar Rojas  -  porf: Mendez - año: 2° cutri 2020
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -6,12 +7,12 @@ const char Dulce  = 'D';
 const char Salado= 'S';
 const char Amargo= 'A';
 
-const int altura_coraje     = 30;
-const int altura_pollito    = 50;
-const int altura_bellota    = 120;
-const int altura_blue       = 140;
-const int altura_jhonnyBravo= 180;
-const int altura_puroHueso  = 200;
+#define altura_coraje         30
+#define altura_pollito        50
+#define altura_bellota        120
+#define altura_blue           140
+#define altura_jhonnyBravo    180
+#define altura_puroHueso      200
 
 const int valor_color_Azul     = 20;
 const int valor_color_Verde    = 20;
@@ -34,6 +35,10 @@ const int MAX_rango_Fecha   = 2008;
 const int MIN_rango_Altura   = 10;
 const int MAX_rango_Altura   = 250;
 
+const int MIN_1puntaje_total  = 1;
+const int MAX_1puntaje_total  = 80;
+ const int MIN_2puntaje_total   = 81;
+ const int MAX_2puntaje_total   = 160;
 
 #define AZUL      'A'
 #define AMARRILLO 'Y'
@@ -49,119 +54,122 @@ const int MAX_rango_Altura   = 250;
 #define JHONNY_BRAVO 'J'
 #define PURO_HUESOS 'H'
 
-/*
-   *PRE:
-   *POST:
+   /*
+   *PRE:  se debera ingresar un personaje exixtente.
+   *POST: retornara la altura apropiada de cada perosnaja segun el perosjae elejido.
    */
 int altura_personaje(char p){
     int alt;
     switch (p){
       case CORAJE:
-         alt=30;
+         alt=altura_coraje;
         break;
       case POLLITO:
-         alt=50;
+         alt=altura_pollito;
         break;
       case BELLOTA:
-         alt=120;
+         alt=altura_bellota;
         break;
       case BLUE:
-         alt=140;
+         alt=altura_blue;
         break;
       case JHONNY_BRAVO:
-         alt=180;
+         alt=altura_jhonnyBravo;
         break;
       case PURO_HUESOS:
-         alt=200;
+         alt=altura_puroHueso;
         break;
     }
     return  alt;
   }
+
    /*
-   *PRE:
-   *POST:
+   *PRE: debera ingresar un altura de un perosnaje para determinar el personaje indicado
+   *POST: segun la altura seleccionado retornara un mensaje del personaje seleccionado. 
    */
   void traerNombre(int jug1){    
     switch (jug1){
-    case 30:
-        printf("- Coraje - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.");
+    case altura_coraje:
+        printf("- Coraje - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.\n");
       break;
-    case 50:
-        printf("- Pollito - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.");
+    case altura_pollito:
+        printf("- Pollito - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.\n");
       break;
-    case 120:
-        printf("- Bellota - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.");
+    case altura_bellota:
+        printf("- Bellota - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.\n");
       break;
-    case 140:
-        printf("- Blue - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.");
+    case altura_blue:
+        printf("- Blue - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.\n");
       break;
-    case 180:
-        printf("- Jhony_Bravo - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.");
+    case altura_jhonnyBravo:
+        printf("- Jhony_Bravo - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.\n");
       break;
-    case 200:
-        printf("- Puro_huesos - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.");
+    case altura_puroHueso:
+        printf("- Puro_huesos - Es el personaje detectado por la ULTRA MAQUINA DETECTADORA.\n");
       break;
     }
    }  
    /*
-   *PRE:
-   *POST:
+   *PRE:  debe ingresar un color segun el mensaje indicado y del tipo carcater.
+   *POST: determinara si el valor ingresado coincide con algun color mencioado,
+          caso afirmativo retornara un puntaje segun el color seleccionado.
+          caso contrario volvera a ingresar un color.
    */
-  int puntaje_color(char *c){  
-    int res;    
+  int  introducir_color(char *c){  
+    int puntaje;    
     do{
-      printf("ingrese un Color: Azul(A), Amarillo(Y), Verde(V), Negro(N), Branco(B) o Rosa(R)\n");
-            scanf("%c",&*c);
+      printf("--> ingrese un Color: Azul(A), Amarillo(Y), Verde(V), Negro(N), Branco(B) o Rosa(R)\n");
+            scanf(" %c",&*c);
       switch (*c){
         case AZUL:
-            res=20;            
+            puntaje=valor_sabor_Amargo;            
           break;
         case VERDE:
-            res=20;           
+            puntaje=valor_sabor_Amargo;           
           break;
         case NEGRO:
-            res=15;            
+            puntaje=valor_sabor_Dulce;            
           break;
         case BLANCO:
-            res=15;          
+            puntaje=valor_sabor_Dulce;          
           break;
         case ROSA:
-            res=5;          
+            puntaje=valor_sabor_Salado;          
           break;
         case AMARRILLO:
-            res=5;          
+            puntaje=valor_sabor_Salado;          
           break;
         //printf("res: %i\n",res);
       }
     } while (*c!=AZUL && *c!=AMARRILLO && *c!=VERDE && *c!=NEGRO && *c!=BLANCO && *c!=ROSA );
-    return res;    
+    return puntaje;    
   }
   
   //-----------------------------------------------------------------------------------------------------
     /*
-    *PRE: se introducera un valor entero entre 1988 y 2008 incluyentes
-    *POST: retorna una operacion entrera.
+    *PRE: se introducera un valor entero entre 1988 y 2008 incluyentes.
+    *POST: retorna una operacion entera menor a 20.
     */
     int operacion_de_puntaje(int *f){
       int res=((*f) % 20)+1;
       return res;
     }
   /*
-   *PRE: se ingresa un nuemro entero que cumpla ciertas condiciones
-   *POST: retornara una un entero 1 y 9
+   *PRE: se igresara solo un numero entero positivo. 
+   *POST: retornara una un entero entre 1 y 9
    */
   int introducir_fNacimiento(int *f){    
       do{
-        printf("ingrese la fecha de nacimiento entre [1988 -2008], excluyente\n");
+        printf("--> ingrese la fecha de nacimiento entre [1988 -2008], excluyente\n");
         scanf("%i",f);
       }while(*f<MIN_rango_Fecha || *f>MAX_rango_Fecha ); // 
       return operacion_de_puntaje(f);      
   } 
     /*
-    *PRE: segun el caracter, asigno puntaje para cada caracter.
-    *POST: retorna un puntaje entero 
+    *PRE: se ingresara un sabor para determinar un puntaje apropiado, segun el sabor elejido. No ingresar un numero entero.
+    *POST: retornara un puntaje entero 
     */
-    int asignar_puntaje(char *s){
+    int asignar_puntaje_Sabor(char *s){
       int puntaje=20;    
       if (*s == Dulce)
         puntaje=15;
@@ -170,28 +178,29 @@ int altura_personaje(char p){
       return puntaje;
     }
   /*
-  *PRE: se introduce un caracter en mayuscula 
-  *POST:
+  *PRE: se ingresara un sabor con un caracter segun el mensaje indicado.  
+  *POST:  retornara un puntaje entero segun el sabor elejido.
   */
   int introducir_sabor(char *s){
     do{
        // printf("123\n");
-      printf("ingrese un Sabor: Dulce(D),Salado(S) o Amargo(A)\n");
+      printf("--> ingrese un Sabor: Dulce(D),Salado(S) o Amargo(A)\n");
        // printf("456\n");
-      scanf("%c",s);
+      scanf(" %c",s);
        // printf("789\n");
     } while(!( *s==Dulce || *s==Salado || *s==Amargo) );
-    return asignar_puntaje(s);    
+    return asignar_puntaje_Sabor(s);    
   }
     /*
-    *PRE: 
-    *POST:
+    *PRE: se ingresara un talle de zapato entero positivo entre [33 y 47] o 0, incluyente 
+    *POST: segun el rango de talle introducido retornara un valor entero entre 2 y 4. 
+          caso contrario retorna un 0.
     */
-    int asignar_puntaje1(int *tz){
+    int asignar_puntaje_Zapato(int *tz){
       int cont=0;
         if (*tz >=33 && *tz <=37)
           cont=2;
-        if (*tz >=38 && *tz <=42)
+        else if (*tz >=38 && *tz <=42)
           cont=3;            
         else if (*tz >=43 && *tz <=47)
           cont=4;        
@@ -199,21 +208,20 @@ int altura_personaje(char p){
       return cont;   
     }
    /*
-   *PRE:
-   *POST:
+   *PRE: se debera ingresar un llate de zapato entero entre un rango [33 y 47], incluyentes o 0.
+   *POST: retornara el talle adecuado segun el numero seleccionado.
    */
-  int introducir_talaZapato(int *tz){
+  int introducir_talla_Zapato(int *tz){
     do{
-      printf("ingrese el Talle de Zapato entre [33 - 47], excluyente o '0'\n");
+      printf("--> ingrese el Talle de Zapato entre [33 - 47], excluyente o '0'\n");
       scanf("%i",tz);
     }while((*tz<MIN_rango_Zapato || *tz>MAX_rango_Zapato) && *tz!=NULL_rango_Zapato);
-     return asignar_puntaje1(tz);
-    
+     return asignar_puntaje_Zapato(tz);    
   }
   
    /*
-   *PRE:
-   *POST:
+   *PRE:  se le asignara el valor de altura ingresado por parametro entre [10 y 250], incluyente.
+   *POST: --- se le asignara el valor que llega por puntero.
    */
   void puntaje_altura(int *a){
       do{
@@ -222,38 +230,38 @@ int altura_personaje(char p){
       }while(*a<10 || *a>250);    
   }
    /*
-   *PRE:
-   *POST:
+   *PRE: se ingresara 5 punatajes enteros para realizar una operacion arimetica. 
+   *POST: retornara un valor entero de la opracion dada.
    */
   int puntaje_total(int*s,int*z,int*c,int*f){
     return ((*s + *c + *f)*(*z));
   }
-
    /*
-   *PRE:
-   *POST:
+   *PRE:  se ingresara la altura seleccionado de 2 personajes  y la del usuario para determinar el personaje indicado
+   *POST: se determinara la altura del personaje mas sercano al usuario para indicar el personaje indicado o seleccionado.
    */
-  void personaje_indicado(int p1, int p2, int* alturaUsuario){
-    int jug1=abs(p1-(*alturaUsuario));
-    int jug2=abs(p2-(*alturaUsuario));
-    printf("j1: %i  -- j2: %i \n",jug1,jug2);
+  void personaje_indicado(int altP1, int altP2, int* alturaUsuario){
+    int jug1=abs(altP1-(*alturaUsuario));
+    int jug2=abs(altP2-(*alturaUsuario));
+    //printf("j1: %i  -- j2: %i \n",jug1,jug2);
     if (jug1<jug2)
-      traerNombre(p1);     
+      traerNombre(altP1);     
     else
-      traerNombre(p2);   
+      traerNombre(altP2);   
   } 
    /*
-   *PRE: 
-   *POST:
+   *PRE:  se ingresara el puntaje total y  la altura del usuario para determinar a 
+          dos personajes posibles segun el rango del el puntaje total.
+   *POST: se prosedera a identificar al personaje indicado 
    */
-  void personajes_posibles(int punTotal, int* alturaUsuario){
+  void personajes_posibles(int* punTotal, int* alturaUsuario){
     int altPersonaje1;
     int altPersonaje2;
 
-    if (punTotal>=1 && punTotal<=80){
+    if (*punTotal>=MIN_1puntaje_total && *punTotal<=MAX_1puntaje_total){
       altPersonaje1=altura_personaje(JHONNY_BRAVO);
       altPersonaje2=altura_personaje(CORAJE);      
-    }else if(punTotal>=81 && punTotal<=160){
+    }else if(*punTotal>=MIN_2puntaje_total && *punTotal<=MAX_2puntaje_total){
       altPersonaje1=altura_personaje(PURO_HUESOS);
       altPersonaje2=altura_personaje(POLLITO); 
     }else{
@@ -262,23 +270,22 @@ int altura_personaje(char p){
       altPersonaje2=altura_personaje(BELLOTA);
     }
     personaje_indicado(altPersonaje1,altPersonaje2,alturaUsuario);  
-    printf("pt: %i\n",punTotal);
+    //printf("pt: %i\n",punTotal);
    // printf("p1: %i  -- p2: %i \n",p1,p2);
    // printf("jugadir indicado es: %i \n",jugIndicado);
     
   }
    /*
-   *PRE:
-   *POST:
+   *PRE:  se ingresaran los 5 datos ingresados por el suario para inicializarlos
+   *POST: determina el puntaje total segun los valores ingresados 
    */
-  void  ingresarDatos(int* fecha,int* talleZapato,int* altura,char* sabor,char* color ){
+  void  ingresarDatos(int* fecha,int* talleZapato,int* altura,char* sabor,char* color,int* punTotal){
     int fechaN    =introducir_fNacimiento(fecha);
     int preSabor  =introducir_sabor(sabor);
-    int zapato    =introducir_talaZapato(talleZapato);
-    int col       =puntaje_color(color);
+    int zapato    =introducir_talla_Zapato(talleZapato);
+    int col       =introducir_color(color);
     puntaje_altura(altura);      
-    int punTotal  =(preSabor + col + fechaN) * zapato;
-    personajes_posibles(punTotal, altura);
+    *punTotal  =(preSabor + col + fechaN) * zapato;
     
     //printf("resultado es: %i",punTotal);
   }
@@ -289,9 +296,12 @@ int main(){
     int alturaPers;
     char saborPreferido;
     char colorPreferido;
-    ingresarDatos(&fachaNacimiento,&tallaZapato,&alturaPers,&saborPreferido,&colorPreferido);
-    
+    int puntaje_total;
+    ingresarDatos(&fachaNacimiento,&tallaZapato,&alturaPers,&saborPreferido,&colorPreferido,&puntaje_total);
+    personajes_posibles(&puntaje_total, &alturaPers);  
    
+    //printf("\n fecha: %i -- talla de zapato: %i -- altura de perosnaje: %i -- saborPreferido: %c -- colorPreferido: %c\n",fachaNacimiento,tallaZapato,alturaPers,saborPreferido,colorPreferido);
     return 0;
 }
+
 //gcc detectorPers.c -o e -Wall -Wconversion -Werror && ./e
