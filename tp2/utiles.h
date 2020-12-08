@@ -3,10 +3,6 @@
 #include <stdio.h>
 #define MAX_PAREDES 250
 
-struct coordenada{
-   int fil;
-   int col;
-}coordenada_t;
 
 /* Pre condiciones: El parametro nivel debe contener el valor de un nivel (1 a 4).
  * Post condiciones: Devuelve el vector de coordenadas de las paredes cargado, junto a su respectivo tope.

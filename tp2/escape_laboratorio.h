@@ -45,27 +45,7 @@ typedef struct juego {
 * y los datos del personaje.
 */
 void inicializar_juego(juego_t* juego , char tipo_personaje);
-/*
-* Recibe un juego con todas sus estructuras válidas.
-* El juego se dará por ganado si el personaje está en el último nivel
-* y posicionado en la salida.
-* El juego se dará por perdido , si el personaje queda sin movimientos.
-* Devolverá:
-* -> 0 si el estado es jugando.
-* -> -1 si el estado es perdido.
-* -> 1 si el estado es ganado.
-*/
-int estado_juego(juego_t juego);
-/*
-* Recibe el personaje con todas sus estructuras válidas , y la coordenada de la salida del nivel en
-ejecución.
-* El nivel se dará por ganado cuando el personaje se
-* posicione en la salida habiendo obtenido previamente la llave.
-* Devolverá:
-* -> 0 si el estado es jugando.
-* -> 1 si el estado es ganado.
-*/
-int estado_nivel(personaje_t personaje , coordenada_t salida);
+
 /*
 * Inicializara un nivel cargando su entrada ,
 * salida , obtáculos , herramientas y paredes.
@@ -88,6 +68,18 @@ cantidad_guardia , bool hay_bomba);
 * el personaje quedará en la misma baldosa.
 */
 void mover_personaje(juego_t* juego , char movimiento);
+
+/*
+* Recibe el personaje con todas sus estructuras válidas , y la coordenada de la salida del nivel en
+ejecución.
+* El nivel se dará por ganado cuando el personaje se
+* posicione en la salida habiendo obtenido previamente la llave.
+* Devolverá:
+* -> 0 si el estado es jugando.
+* -> 1 si el estado es ganado.
+*/
+int estado_nivel(personaje_t personaje , coordenada_t salida);
+
 /*
 * Mostrará el juego por pantalla.
 * Se recomienda mostrar todo aquello que le sea de
@@ -95,4 +87,18 @@ void mover_personaje(juego_t* juego , char movimiento);
 * el nivel , los obstaculos posicionados , las paredes , etc.
 */
 void mostrar_juego(juego_t juego);
+
+/*
+* Recibe un juego con todas sus estructuras válidas.
+* El juego se dará por ganado si el personaje está en el último nivel
+* y posicionado en la salida.
+* El juego se dará por perdido , si el personaje queda sin movimientos.
+* Devolverá:
+* -> 0 si el estado es jugando.
+* -> -1 si el estado es perdido.
+* -> 1 si el estado es ganado.
+*/
+int estado_juego(juego_t juego);
+
+
 #endif /* __ESCAPE_LABORATORIO_H__ */
