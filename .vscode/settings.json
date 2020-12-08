@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "estadisticas.h": "c",
+        "detector_personajes.h": "c",
+        "stdbool.h": "c"
     }
 }
